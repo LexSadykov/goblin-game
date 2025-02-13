@@ -1,0 +1,18 @@
+version: 1.0.{build}
+image: Visual Studio 2022
+install:
+  - ps: Install-Product node
+  - npm install
+build_script:
+  - npm run build
+test_script:
+  - npm test
+artifacts:
+  - path: dist
+deploy:
+  provider: GitHub
+  auth_token:
+    secure: YOUR_GITHUB_TOKEN
+  artifact: dist
+  draft: false
+  prerelease: false
